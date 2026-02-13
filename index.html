@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Débora ❤️ David</title>
+
+<!-- Fuente romántica -->
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    background: radial-gradient(circle at top, #ffe6f0 0%, #ffd6e0 40%, #ffc2d1 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Luces románticas */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    filter: blur(90px);
+    z-index: 0;
+}
+
+body::before {
+    top: -120px;
+    left: -120px;
+}
+
+body::after {
+    bottom: -120px;
+    right: -120px;
+}
+
+/* Pantalla inicio */
+.start-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #ff8fab, #ffc2d1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 5;
+    color: white;
+}
+
+.start-screen h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 42px;
+    margin: 0;
+}
+
+.start-screen p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Contenedor */
+.wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Carta */
+.card {
+    width: 100%;
+    max-width: 520px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 30px;
+    padding: 35px 28px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.18);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 1s;
+}
+
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1 {
+    font-family: 'Great Vibes', cursive;
+    color: #d6336c;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.big-heart {
+    font-size: 70px;
+    animation: beat 1.5s infinite;
+}
+
+@keyframes beat {
+    0%,100% {transform: scale(1);}
+    50% {transform: scale(1.15);}
+}
+
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    color: #c9184a;
+}
+
+.text {
+    margin-top: 18px;
+    color: #555;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.verse {
+    margin-top: 18px;
+    color: #c9184a;
+    font-style: italic;
+    font-size: 15px;
+}
+
+.timer {
+    margin-top: 18px;
+    font-weight: bold;
+    color: #d6336c;
+    font-size: 15px;
+}
+
+button {
+    margin-top: 24px;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(90deg,#ff4d88,#d6336c);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(214,51,108,0.4);
+}
+
+.footer {
+    margin-top: 20px;
+    color: #888;
+    font-size: 15px;
+}
+
+/* Corazones */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 18px;
+    opacity: 0.6;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="start-screen" onclick="start()">
+    <div>
+        <h1>Débora & David</h1>
+        <p>Toca para abrir tu sorpresa</p>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="card" id="card">
+        <h1>Para mi mejor amigo y compañero</h1>
+
+```
+    <div class="big-heart">❤️</div>
+
+    <div class="names">
+        Débora & David
+    </div>
+
+    <div class="text">
+        Después del tiempo y la distancia,<br>
+        Dios nos volvió a encontrar.<br><br>
+
+        Hoy somos más maduros,<br>
+        y nuestro cariño ha superado las dificultades.<br><br>
+
+        Si pudiera elegir un lugar seguro,<br>
+        siempre sería a tu lado.
+    </div>
+
+    <div class="verse">
+        “El amor es paciente, es bondadoso.
+        Todo lo soporta, todo lo cree,
+        todo lo espera, todo lo perdona.”
+        <br>— 1 Corintios 13:4-7
+    </div>
+
+    <div class="timer" id="timer"></div>
+
+    <button onclick="playMusic()">Escuchar nuestra canción 🎶</button>
+
+    <div class="footer">
+        Te quiero mucho, David 💕<br>
+        PD: No me acuerdo de la fecha exacta jajja
+    </div>
+</div>
+```
+
+</div>
+
+<script>
+function start(){
+    document.querySelector(".start-screen").style.display = "none";
+    document.getElementById("card").classList.add("show");
+}
+
+const startDate = new Date("2022-08-23T00:00:00");
+
+function updateTimer(){
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff/(1000*60*60))%24);
+    const minutes = Math.floor((diff/(1000*60))%60);
+    const seconds = Math.floor((diff/1000)%60);
+
+    document.getElementById("timer").innerHTML =
+        `Has estado para mí desde hace ${days} días ${hours}h ${minutes}m ${seconds}s`;
+}
+
+setInterval(updateTimer,1000);
+updateTimer();
+
+function playMusic(){
+    window.open("https://youtu.be/IPiA2ljRhvo", "_blank");
+}
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.animationDuration = (Math.random()*4+4)+"s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),8000);
+}
+
+setInterval(createHeart,400);
+</script>
+
+</body>
+</html>
