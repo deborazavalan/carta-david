@@ -15,7 +15,8 @@ body {
     margin: 0;
     font-family: "Times New Roman", serif;
     background: radial-gradient(circle at top, #ffe6f0 0%, #ffd6e0 40%, #ffc2d1 100%);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
 }
 
@@ -73,9 +74,9 @@ body::after {
     z-index: 2;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
 /* Carta */
@@ -152,6 +153,11 @@ button {
     font-size: 16px;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(214,51,108,0.4);
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
 }
 
 .footer {
@@ -160,7 +166,7 @@ button {
     font-size: 15px;
 }
 
-/* Corazones */
+/* Corazones flotando */
 .heart {
     position: fixed;
     bottom: -20px;
@@ -173,6 +179,22 @@ button {
     to {
         transform: translateY(-110vh);
         opacity: 0;
+    }
+}
+
+/* Ajuste móvil */
+@media (max-width: 480px) {
+    .card {
+        max-width: 95%;
+        padding: 30px 22px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    .text {
+        font-size: 16px;
     }
 }
 </style>
@@ -274,4 +296,6 @@ setInterval(createHeart,400);
 
 </body>
 </html>
+
+
 
